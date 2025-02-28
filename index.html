@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnOnline - Make Money Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>💰 EarnOnline</h1>
+        <p>Discover top websites to earn money online!</p>
+    </header>
+
+    <main id="website-list">
+        <!-- Websites will be dynamically added here -->
+    </main>
+
+    <button id="admin-btn">⚙️</button>
+
+    <!-- Hidden Admin Panel -->
+    <div id="admin-panel" class="hidden">
+        <div class="admin-content">
+            <h2>🔑 Admin Panel</h2>
+            <input type="password" id="admin-password" placeholder="Enter password">
+            <button onclick="verifyPassword()">Login</button>
+
+            <div id="admin-controls" class="hidden">
+                <h3>Add a New Website</h3>
+                <input type="text" id="website-name" placeholder="Website Name">
+                <input type="text" id="website-logo" placeholder="Logo URL">
+                <input type="text" id="website-desc" placeholder="Short Description">
+                <input type="text" id="website-link" placeholder="Website Link">
+                <button onclick="addWebsite()">➕ Add Website</button>
+
+                <h3>Manage Websites</h3>
+                <ul id="website-list-admin"></ul>
+            </div>
+
+            <button id="close-admin">❌ Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
