@@ -1,153 +1,78 @@
-/* General Styling */
+/* Reset & Basic Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #f0f0f0, #ffffff);
-    color: #333;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Header Section */
 header {
-    background: black;
-    color: white;
-    padding: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
 }
 
-/* Website Listings */
-main {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
 
-.website {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 15px;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 12px;
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+.website-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
 }
 
-.website:hover {
-    transform: scale(1.03);
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+.website-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.website img {
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
-    border-radius: 8px;
+.website-item:hover {
+  transform: translateY(-5px);
 }
 
-.website h3 {
-    margin: 0;
-    font-size: 1.2em;
-    color: black;
+.website-item img {
+  max-width: 100px;
+  margin-bottom: 1rem;
 }
 
-.website p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #555;
+.website-item h3 {
+  margin-bottom: 0.5rem;
 }
 
-.website a {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 5px 10px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+.website-item p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
-.website a:hover {
-    background: grey;
+.website-item a {
+  text-decoration: none;
+  color: white;
+  background-color: #4CAF50;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
 }
 
-/* Admin Button (Settings Icon Only) */
-#admin-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    color: black;
-    background: none;
+.website-item a:hover {
+  background-color: #45a049;
 }
 
-#admin-btn:hover {
-    color: grey;
-}
-
-/* Admin Panel (Popup Window) */
-#admin-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.admin-content {
-    background: white;
-    padding: 25px;
-    width: 320px;
-    text-align: center;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-}
-
-.hidden {
-    display: none;
-}
-
-#close-admin {
-    margin-top: 15px;
-    background: grey;
-    color: white;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* Admin Panel Website List */
-#website-list-admin li {
-    list-style: none;
-    margin: 5px 0;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#website-list-admin button {
-    background: black;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#website-list-admin button:hover {
-    background: grey;
-}
