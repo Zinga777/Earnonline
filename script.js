@@ -1,78 +1,55 @@
-/* Reset & Basic Styling */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+// Firebase JS SDK via CDN
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD0iWlMKA2_8CcMy08Fm4GO1mcR2M-CYBg",
+  authDomain: "earnonlinedb.firebaseapp.com",
+  projectId: "earnonlinedb",
+  storageBucket: "earnonlinedb.firebasestorage.app",
+  messagingSenderId: "1011010061086",
+  appId: "1:1011010061086:web:3331ca1931a9f516e1ff0f",
+  measurementId: "G-GBZCW9N25P"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Fetch websites from Firestore
+async function fetchWebsites() {
+  const websiteList = document.getElementById("website-list");
+  websiteList.innerHTML = `<p>Loading...</p>`;
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "Websites"));
+    websiteList.innerHTML = ""; // Clear loading text
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+
+      const websiteItem = document.createElement("div");
+      websiteItem.classList.add("website-item");
+
+      websiteItem.innerHTML = `
+        <img src="${data.Logo}" alt="${data.Name} logo" />
+        <h3>${data.Name}</h3>
+        <p>${data.Description}</p>
+        <a href="${data['URL link']}" target="_blank">Visit Site</a>
+      `;
+
+      websiteList.appendChild(websiteItem);
+    });
+
+    if (querySnapshot.empty) {
+      websiteList.innerHTML = "<p>No websites found. Add some in Firebase!</p>";
+    }
+
+  } catch (error) {
+    websiteList.innerHTML = `<p>Error loading data: ${error.message}</p>`;
+    console.error("Error fetching documents: ", error);
+  }
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
-}
-
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: 2rem;
-}
-
-.website-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 2rem;
-}
-
-.website-item {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.website-item:hover {
-  transform: translateY(-5px);
-}
-
-.website-item img {
-  max-width: 100px;
-  margin-bottom: 1rem;
-}
-
-.website-item h3 {
-  margin-bottom: 0.5rem;
-}
-
-.website-item p {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.website-item a {
-  text-decoration: none;
-  color: white;
-  background-color: #4CAF50;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-.website-item a:hover {
-  background-color: #45a049;
-}
-
+window.addEventListener("DOMContentLoaded", fetchWebsites);
