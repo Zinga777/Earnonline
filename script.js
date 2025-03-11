@@ -1,105 +1,78 @@
-let websites = [];
-
-// Open and Close Admin Panel
-document.getElementById("admin-btn").addEventListener("click", function () {
-    document.getElementById("admin-panel").style.display = "flex";
-});
-
-document.getElementById("close-admin").addEventListener("click", function () {
-    document.getElementById("admin-panel").style.display = "none";
-});
-
-// Verify Password Before Showing Admin Controls
-function verifyPassword() {
-    const password = document.getElementById("admin-password").value;
-    if (password === "Sushil@Zuzu") { // Change this password as needed
-        document.getElementById("admin-controls").classList.remove("hidden");
-        loadAdminPanel();
-    } else {
-        alert("Incorrect Password");
-    }
+/* Reset & Basic Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-// Add a New Website
-function addWebsite() {
-    const name = document.getElementById("website-name").value;
-    const logo = document.getElementById("website-logo").value;
-    const desc = document.getElementById("website-desc").value;
-    const link = document.getElementById("website-link").value;
-
-    if (name && logo && desc && link) {
-        websites.push({ name, logo, desc, link });
-        saveWebsites();
-        renderWebsites();
-        loadAdminPanel();
-        clearForm();
-    } else {
-        alert("Please fill all fields");
-    }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
 }
 
-// Delete a Website
-function deleteWebsite(index) {
-    websites.splice(index, 1);
-    saveWebsites();
-    renderWebsites();
-    loadAdminPanel();
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
 }
 
-// Save Websites to Local Storage
-function saveWebsites() {
-    localStorage.setItem("websites", JSON.stringify(websites));
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
 
-// Load Websites from Storage
-function loadWebsites() {
-    const saved = localStorage.getItem("websites");
-    if (saved) {
-        websites = JSON.parse(saved);
-    }
-    renderWebsites();
+.website-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
 }
 
-// Render Websites on the Main Page
-function renderWebsites() {
-    const list = document.getElementById("website-list");
-    list.innerHTML = "";
-    websites.forEach((site) => {
-        const siteElement = document.createElement("div");
-        siteElement.classList.add("website");
-        siteElement.innerHTML = `
-            <img src="${site.logo}" alt="Logo">
-            <div>
-                <h3>${site.name}</h3>
-                <p>${site.desc}</p>
-                <a href="${site.link}" target="_blank">Visit</a>
-            </div>
-        `;
-        list.appendChild(siteElement);
-    });
+.website-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-// Load Admin Panel Website List
-function loadAdminPanel() {
-    const adminList = document.getElementById("website-list-admin");
-    adminList.innerHTML = "";
-    websites.forEach((site, index) => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-            ${site.name} 
-            <button onclick="deleteWebsite(${index})">❌ Delete</button>
-        `;
-        adminList.appendChild(listItem);
-    });
+.website-item:hover {
+  transform: translateY(-5px);
 }
 
-// Clear Input Fields After Adding a Website
-function clearForm() {
-    document.getElementById("website-name").value = "";
-    document.getElementById("website-logo").value = "";
-    document.getElementById("website-desc").value = "";
-    document.getElementById("website-link").value = "";
+.website-item img {
+  max-width: 100px;
+  margin-bottom: 1rem;
 }
 
-// Load Websites on Page Load
-loadWebsites();
+.website-item h3 {
+  margin-bottom: 0.5rem;
+}
+
+.website-item p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.website-item a {
+  text-decoration: none;
+  color: white;
+  background-color: #4CAF50;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.website-item a:hover {
+  background-color: #45a049;
+}
+
